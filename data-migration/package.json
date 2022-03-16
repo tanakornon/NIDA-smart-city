@@ -1,0 +1,21 @@
+{
+  "scripts": {
+    "prettier-format": "prettier --config .prettierrc src/**/*.ts --write"
+  },
+  "devDependencies": {
+    "@types/mysql": "^2.15.21",
+    "husky": "^7.0.4",
+    "prettier": "^2.6.0",
+    "pretty-quick": "^3.1.3",
+    "typescript": "^4.6.2"
+  },
+  "dependencies": {
+    "mongoose": "^6.2.6",
+    "mysql": "^2.18.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  }
+}
