@@ -4,7 +4,7 @@ import mysql from './utils/mysql';
 async function main() {
   const migrate = new MigrateService();
 
-  console.log("Extract PM2.5 Data...")
+  console.log('Extract PM2.5 Data...');
   await migrate.extractDustData();
 }
 
@@ -14,6 +14,6 @@ main()
     process.exit(0);
   })
   .catch((err) => {
-    console.error(err);
+    console.error(err.message);
     process.exit(1);
   });

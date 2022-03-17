@@ -9,8 +9,13 @@ export class DustRepository {
         pm25
     `);
 
-    const latestUpdate = maxDateRows[0].maxDate;
-    return latestUpdate;
+    const latestUpdate = maxDateRows.shift();
+
+    if (latestUpdate) {
+      return latestUpdate.maxDate;
+    }
+
+    return undefined;
   }
 
   public async queryLatestPM25() {

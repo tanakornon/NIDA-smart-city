@@ -1,7 +1,7 @@
 import * as mysql from 'mysql';
 
 import { parseJson } from './parser';
-import { mysqlConfig } from '../configs/dev';
+import { mysqlConfig } from '../configs/prod';
 
 interface MySqlRow {
   [key: string]: string;

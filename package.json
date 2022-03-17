@@ -1,14 +1,10 @@
 {
   "scripts": {
+    "prepare": "husky install",
     "start": "npm run build && node dist/index.js",
     "build": "tsc --build",
     "clean": "tsc --build --clean",
     "prettier-format": "prettier --config .prettierrc src/**/*.ts --write"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged"
-    }
   },
   "devDependencies": {
     "@types/mysql": "^2.15.21",
