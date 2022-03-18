@@ -20,7 +20,6 @@ export class DustRepository {
 
   public async queryLatestPM25() {
     const latestUpdate = await this.queryLatestUpdate();
-    console.log(latestUpdate);
     const pm25 = await mysql.query(`
       SELECT
         Device,
@@ -31,7 +30,7 @@ export class DustRepository {
       FROM
         pm25
       WHERE
-        DataDateTime = CONVERT_TZ('${latestUpdate}', '+00:00', '+07:00')
+        DataDateTime = CAST('${latestUpdate}' AS DATETIME)
     `);
 
     return pm25;
