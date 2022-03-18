@@ -20,6 +20,7 @@ export class DustRepository {
 
   public async queryLatestPM25() {
     const latestUpdate = await this.queryLatestUpdate();
+    console.log(latestUpdate);
     const pm25 = await mysql.query(`
       SELECT
         Device,
