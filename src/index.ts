@@ -6,6 +6,9 @@ async function main() {
 
   console.log('Extract PM2.5 Data...');
   await migrate.extractDustData();
+
+  console.log('EXtract Power Data...');
+  await migrate.extractPowerData();
 }
 
 main()

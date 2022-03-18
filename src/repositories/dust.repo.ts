@@ -22,6 +22,7 @@ export class DustRepository {
     const latestUpdate = await this.queryLatestUpdate();
     const pm25 = await mysql.query(`
       SELECT
+        DataDateTime,
         Device,
         CO2,
         Humidity,
