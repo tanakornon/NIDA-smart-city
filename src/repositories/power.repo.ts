@@ -25,7 +25,7 @@ export class PowerRepository {
         DataDateTime,
         Device,
 				kW,
-				kWh,
+				kWh
       FROM
         meter
       WHERE
