@@ -3,9 +3,9 @@ import mysql from '../utils/mysql';
 export class PowerRepository {
   private async queryLatestUpdate() {
     const maxDateRows = await mysql.query(`
-    	SELECT
+      SELECT
         MAX(DataDateTime) AS maxDate
-    	FROM
+      FROM
         meter
     `);
 
@@ -24,8 +24,8 @@ export class PowerRepository {
       SELECT
         DataDateTime,
         Device,
-				kW,
-				kWh
+        kW,
+        kWh
       FROM
         meter
       WHERE
