@@ -1,12 +1,12 @@
 import mysql from '../utils/mysql';
 
-export class PowerRepository {
+export class WaterMeterRepository {
   private async queryLatestUpdate() {
     const maxDateRows = await mysql.query(`
       SELECT
         MAX(DataDateTime) AS maxDate
       FROM
-        powermeter
+        watermeter
     `);
 
     const latestUpdate = maxDateRows.shift();
@@ -22,12 +22,9 @@ export class PowerRepository {
     const latestUpdate = await this.queryLatestUpdate();
     const meter = await mysql.query(`
       SELECT
-        DataDateTime,
-        Device,
-        kW,
-        kWh
+        *
       FROM
-        powermeter
+        watermeter
       WHERE
         DataDateTime = CAST('${latestUpdate}' AS DATETIME)
     `);
