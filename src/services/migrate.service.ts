@@ -10,7 +10,7 @@ export class MigrateService {
     const date = new Date(data.DataDateTime);
 
     return {
-      CreateAt: date.getDate() / 1000,
+      CreateAt: date.getTime() / 1000,
       DataDateTime: date,
       Device: data.Device,
       CO2: data.CO2,
@@ -24,7 +24,7 @@ export class MigrateService {
     const date = new Date(data.DataDateTime);
 
     return {
-      CreateAt: date.getDate() / 1000,
+      CreateAt: date.getTime() / 1000,
       DataDateTime: date,
       Device: data.Device,
       kW: data.kW,
