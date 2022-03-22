@@ -15,3 +15,55 @@ export interface PowerData {
   kW: number;
   kWh: number;
 }
+
+export interface WaterData {
+  CreateAt: number;
+  DataDateTime: Date;
+  Device: string;
+  Day01: number;
+  Day02: number;
+  Day03: number;
+  Day04: number;
+  Day05: number;
+  Day06: number;
+  Day07: number;
+  Day08: number;
+  Day09: number;
+  Day10: number;
+  Day11: number;
+  Day12: number;
+  Day13: number;
+  Day14: number;
+  Day15: number;
+  Day16: number;
+  Day17: number;
+  Day18: number;
+  Day19: number;
+  Day20: number;
+  Day21: number;
+  Day22: number;
+  Day23: number;
+  Day24: number;
+  Day25: number;
+  Day26: number;
+  Day27: number;
+  Day28: number;
+  Day29: number;
+  Day30: number;
+  Day31: number;
+  WM_M01: number;
+  WM_M02: number;
+  WM_M03: number;
+  WM_M04: number;
+  WM_M05: number;
+  WM_M06: number;
+  WM_M07: number;
+  WM_M08: number;
+  WM_M09: number;
+  WM_M10: number;
+  WM_M11: number;
+  WM_M12: number;
+  WM_Year: number;
+  WM_SumMonth: number;
+  WM_SumYear: number;
+}

@@ -9,6 +9,9 @@ async function main() {
 
   console.log('Migrate Power Data');
   await migrate.migratePowerData();
+
+  console.log('Migrate Water Data');
+  await migrate.migrateWaterData();
 }
 
 main()
