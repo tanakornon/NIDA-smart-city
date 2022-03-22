@@ -1,3 +1,5 @@
+import cron from 'node-cron';
+
 import { MigrateService } from './services/migrate.service';
 import mysql from './utils/mysql';
 
@@ -14,12 +16,12 @@ async function main() {
   await migrate.migrateWaterData();
 }
 
-main()
-  .then(() => {
-    mysql.end();
-    process.exit(0);
-  })
-  .catch((err) => {
-    console.error(err.message);
-    process.exit(1);
-  });
+cron.schedule('*/15 * * * *', function () {
+  main()
+    .then(() => {
+      mysql.end();
+    })
+    .catch((err) => {
+      console.error(err.message);
+    });
+});
