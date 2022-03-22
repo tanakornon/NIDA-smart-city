@@ -1,7 +1,5 @@
-import axios from 'axios';
-import mongoose from 'mongoose';
-
 import { DustData } from '../types/sensor.type';
+import { post } from '../utils/request';
 import mysql, { MySqlRow } from '../utils/mysql';
 
 export class DustRepository {
@@ -42,31 +40,6 @@ export class DustRepository {
   }
 
   public async load(data: DustData[]) {
-    const dustSchema = new mongoose.Schema({
-      DataDateTime: Date,
-      Device: String,
-      CO2: Number,
-      Humidity: Number,
-      PM25: Number,
-      Temperature: Number
-    });
-
-    const DustModel = mongoose.model('log_pm25', dustSchema);
-
-    await DustModel.insertMany(data)
-      .then(function () {
-        console.log('Insert log_pm25'); // Success
-      })
-      .catch(function (error) {
-        console.log(error); // Failure
-      });
-  }
-
-  public async request(data: DustData[]) {
-    console.log(JSON.stringify(data));
-    await axios
-      .post('http://10.10.161.37:8000/log_pm25', data)
-      .then((response) => console.info(response.data))
-      .catch((err) => console.error(err.message));
+    await post('log_pm25', data);
   }
 }

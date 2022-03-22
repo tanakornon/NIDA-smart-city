@@ -7,5 +7,3 @@ export const mysqlConfig: mysql.ConnectionConfig = {
   password: 'password',
   database: 'advreports_production'
 };
-
-export const mongoConfig = 'mongodb://localhost:27017/nidaioc';

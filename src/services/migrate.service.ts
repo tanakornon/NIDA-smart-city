@@ -38,7 +38,7 @@ export class MigrateService {
     console.log('Transform data...');
     const dustData = rawData.map((row) => this.transformDustData(row));
     console.log('Load data...');
-    await this.dustRepo.request(dustData);
+    await this.dustRepo.load(dustData);
   }
 
   public async migratePowerData() {
@@ -47,6 +47,6 @@ export class MigrateService {
     console.log('Transform data...');
     const powerData = rawData.map((row) => this.transformPowerData(row));
     console.log('Load data...');
-    await this.powerRepo.request(powerData);
+    await this.powerRepo.load(powerData);
   }
 }

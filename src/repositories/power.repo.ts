@@ -1,8 +1,6 @@
-import axios from 'axios';
-import mongoose from 'mongoose';
 import { PowerData } from '../types/sensor.type';
-
 import mysql from '../utils/mysql';
+import { post } from '../utils/request';
 
 export class PowerRepository {
   private async queryLatestUpdate() {
@@ -40,30 +38,6 @@ export class PowerRepository {
   }
 
   public async load(data: PowerData[]) {
-    const powerSchema = new mongoose.Schema({
-      CreateAt: Number,
-      DataDateTime: Date,
-      Device: String,
-      kW: Number,
-      kWh: Number
-    });
-
-    const powerModel = mongoose.model('log_power', powerSchema);
-
-    await powerModel
-      .insertMany(data)
-      .then(function () {
-        console.log('Insert log_power'); // Success
-      })
-      .catch(function (error) {
-        console.log(error); // Failure
-      });
-  }
-
-  public async request(data: PowerData[]) {
-    await axios
-      .post('http://10.10.161.37:8000/log_power', data)
-      .then((response) => console.info(response.data))
-      .catch((err) => console.error(err.message));
+    await post('log_power', data);
   }
 }

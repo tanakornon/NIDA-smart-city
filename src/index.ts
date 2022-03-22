@@ -1,5 +1,4 @@
 import { MigrateService } from './services/migrate.service';
-import mongodb from './utils/mongodb';
 import mysql from './utils/mysql';
 
 async function main() {

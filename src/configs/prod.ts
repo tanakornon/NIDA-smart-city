@@ -8,4 +8,4 @@ export const mysqlConfig: mysql.ConnectionConfig = {
   database: 'advreports_production'
 };
 
-export const mongoConfig = 'mongodb://10.10.161.37:8000/nidaioc';
+export const mongoEndpoint = 'http://10.10.161.37:8000';
