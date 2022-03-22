@@ -62,7 +62,7 @@ export class PowerRepository {
 
   public async request(data: PowerData[]) {
     await axios
-      .post('http://10.10.161.37:8000/log_power', JSON.stringify(data))
+      .post('http://10.10.161.37:8000/log_power', data)
       .then((response) => console.info(response.data))
       .catch((err) => console.error(err.message));
   }

@@ -63,7 +63,7 @@ export class DustRepository {
   public async request(data: DustData[]) {
     console.log(JSON.stringify(data));
     await axios
-      .post('http://10.10.161.37:8000/log_pm25', JSON.stringify(data))
+      .post('http://10.10.161.37:8000/log_pm25', data)
       .then((response) => console.info(response.data))
       .catch((err) => console.error(err.message));
   }
