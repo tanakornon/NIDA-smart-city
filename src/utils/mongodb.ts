@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
-import { mongoConfig } from '../configs/dev';
+
+import { mongoConfig } from '../configs/prod';
 
 class MongoDB {
   private connection: any;
