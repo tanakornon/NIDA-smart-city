@@ -34,6 +34,8 @@ export class DustRepository {
         Temperature
       FROM
         pm25
+      WHERE
+        DataDateTime = CAST('${latestUpdate}' AS DATETIME)
     `);
 
     return pm25;
