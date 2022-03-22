@@ -4,10 +4,10 @@ import mysql from './utils/mysql';
 async function main() {
   const migrate = new MigrateService();
 
-  console.log('Migrate PM2.5 Data...');
+  console.log('Migrate PM2.5 Data');
   await migrate.migrateDustData();
 
-  console.log('Migrate Power Data...');
+  console.log('Migrate Power Data');
   await migrate.migratePowerData();
 }
 

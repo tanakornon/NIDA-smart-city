@@ -33,20 +33,30 @@ export class MigrateService {
   }
 
   public async migrateDustData() {
-    console.log('Extract data...');
+    process.stdout.write(' - Extract data ... ');
     const rawData = await this.dustRepo.extract();
-    console.log('Transform data...');
+    process.stdout.write('OK\n');
+
+    process.stdout.write(' - Transform data ... ');
     const dustData = rawData.map((row) => this.transformDustData(row));
-    console.log('Load data...');
+    process.stdout.write('OK\n');
+
+    process.stdout.write(' - Load data ... ');
     await this.dustRepo.load(dustData);
+    process.stdout.write('OK\n');
   }
 
   public async migratePowerData() {
-    console.log('Extract data...');
+    process.stdout.write(' - Extract data ... ');
     const rawData = await this.powerRepo.queryLatestMeter();
-    console.log('Transform data...');
+    process.stdout.write('OK\n');
+
+    process.stdout.write(' - Transform data ... ');
     const powerData = rawData.map((row) => this.transformPowerData(row));
-    console.log('Load data...');
+    process.stdout.write('OK\n');
+
+    process.stdout.write(' - Load data ... ');
     await this.powerRepo.load(powerData);
+    process.stdout.write('OK\n');
   }
 }
