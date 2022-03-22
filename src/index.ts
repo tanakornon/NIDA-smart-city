@@ -3,8 +3,6 @@ import mongodb from './utils/mongodb';
 import mysql from './utils/mysql';
 
 async function main() {
-  mongodb.createConnection();
-
   const migrate = new MigrateService();
 
   console.log('Extract PM2.5 Data...');
@@ -16,7 +14,6 @@ async function main() {
 
 main()
   .then(() => {
-    mongodb.end();
     mysql.end();
     process.exit(0);
   })
