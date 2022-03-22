@@ -1,9 +1,9 @@
 import * as mysql from 'mysql';
 
 import { parseJson } from './parser';
-import { mysqlConfig } from '../configs/prod';
+import { mysqlConfig } from '../configs/dev';
 
-interface MySqlRow {
+export interface MySqlRow {
   [key: string]: string;
 }
 

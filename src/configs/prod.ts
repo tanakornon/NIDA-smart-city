@@ -7,3 +7,5 @@ export const mysqlConfig: mysql.ConnectionConfig = {
   password: 'P@ssw0rd',
   database: 'advreports_production'
 };
+
+export const mongoConfig = 'mongodb://10.10.161.37:8000/nidaioc';

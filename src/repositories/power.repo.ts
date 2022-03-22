@@ -1,3 +1,6 @@
+import mongoose from 'mongoose';
+import { PowerData } from '../types/sensor.type';
+
 import mysql from '../utils/mysql';
 
 export class PowerRepository {
@@ -33,5 +36,25 @@ export class PowerRepository {
     `);
 
     return meter;
+  }
+
+  public async load(data: PowerData[]) {
+    const powerSchema = new mongoose.Schema({
+      DataDateTime: Date,
+      Device: String,
+      kW: Number,
+      kWh: Number
+    });
+
+    const powerModel = mongoose.model('log_power', powerSchema);
+
+    await powerModel
+      .insertMany(data)
+      .then(function () {
+        console.log('Insert log_power'); // Success
+      })
+      .catch(function (error) {
+        console.log(error); // Failure
+      });
   }
 }

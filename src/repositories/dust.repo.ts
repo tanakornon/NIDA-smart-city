@@ -1,4 +1,7 @@
-import mysql from '../utils/mysql';
+import mongoose from 'mongoose';
+
+import { DustData } from '../types/sensor.type';
+import mysql, { MySqlRow } from '../utils/mysql';
 
 export class DustRepository {
   private async queryLatestUpdate() {
@@ -18,7 +21,7 @@ export class DustRepository {
     return undefined;
   }
 
-  public async queryLatestPM25() {
+  public async extract(): Promise<MySqlRow[]> {
     const latestUpdate = await this.queryLatestUpdate();
     const pm25 = await mysql.query(`
       SELECT
@@ -30,10 +33,29 @@ export class DustRepository {
         Temperature
       FROM
         pm25
-      WHERE
-        DataDateTime = CAST('${latestUpdate}' AS DATETIME)
     `);
 
     return pm25;
+  }
+
+  public async load(data: DustData[]) {
+    const dustSchema = new mongoose.Schema({
+      DataDateTime: Date,
+      Device: String,
+      CO2: Number,
+      Humidity: Number,
+      PM25: Number,
+      Temperature: Number
+    });
+
+    const DustModel = mongoose.model('log_pm25', dustSchema);
+
+    await DustModel.insertMany(data)
+      .then(function () {
+        console.log('Insert log_pm25'); // Success
+      })
+      .catch(function (error) {
+        console.log(error); // Failure
+      });
   }
 }
