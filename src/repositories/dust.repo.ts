@@ -1,3 +1,4 @@
+import axios from 'axios';
 import mongoose from 'mongoose';
 
 import { DustData } from '../types/sensor.type';
@@ -57,5 +58,9 @@ export class DustRepository {
       .catch(function (error) {
         console.log(error); // Failure
       });
+  }
+
+  public async request(data: DustData[]) {
+    axios.post('http://10.10.161.37:8000/log_pm25', JSON.stringify(data));
   }
 }

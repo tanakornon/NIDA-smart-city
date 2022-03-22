@@ -1,4 +1,5 @@
 export interface DustData {
+  CreateAt: number;
   DataDateTime: Date;
   Device: string;
   CO2: number;
@@ -8,6 +9,7 @@ export interface DustData {
 }
 
 export interface PowerData {
+  CreateAt: number;
   DataDateTime: Date;
   Device: string;
   kW: number;

@@ -1,3 +1,4 @@
+import axios from 'axios';
 import mongoose from 'mongoose';
 import { PowerData } from '../types/sensor.type';
 
@@ -40,6 +41,7 @@ export class PowerRepository {
 
   public async load(data: PowerData[]) {
     const powerSchema = new mongoose.Schema({
+      CreateAt: Number,
       DataDateTime: Date,
       Device: String,
       kW: Number,
@@ -56,5 +58,9 @@ export class PowerRepository {
       .catch(function (error) {
         console.log(error); // Failure
       });
+  }
+
+  public async request(data: PowerData[]) {
+    axios.post('http://10.10.161.37:8000/log_power', JSON.stringify(data));
   }
 }

@@ -7,8 +7,11 @@ export class MigrateService {
   private powerRepo = new PowerRepository();
 
   private transformDustData(data: any): DustData {
+    const date = new Date(data.DataDateTime);
+
     return {
-      DataDateTime: new Date(data.DataDateTime),
+      CreateAt: date.getDate() / 1000,
+      DataDateTime: date,
       Device: data.Device,
       CO2: data.CO2,
       Humidity: data.Humidity,
@@ -18,8 +21,11 @@ export class MigrateService {
   }
 
   private transformPowerData(data: any): PowerData {
+    const date = new Date(data.DataDateTime);
+
     return {
-      DataDateTime: new Date(data.DataDateTime),
+      CreateAt: date.getDate() / 1000,
+      DataDateTime: date,
       Device: data.Device,
       kW: data.kW,
       kWh: data.kWh
@@ -29,12 +35,12 @@ export class MigrateService {
   public async migrateDustData() {
     const rawData = await this.dustRepo.extract();
     const dustData = rawData.map((row) => this.transformDustData(row));
-    await this.dustRepo.load(dustData);
+    await this.dustRepo.request(dustData);
   }
 
   public async migratePowerData() {
     const rawData = await this.powerRepo.queryLatestMeter();
     const powerData = rawData.map((row) => this.transformPowerData(row));
-    await this.powerRepo.load(powerData);
+    await this.powerRepo.request(powerData);
   }
 }
