@@ -1,4 +1,7 @@
 {
+  "version": "1.0.0",
+  "description": "The data migration job for nida smart city",
+  "main": "src/index.ts",
   "scripts": {
     "prepare": "husky install",
     "start": "npm run build && node dist/index.js",
