@@ -67,3 +67,54 @@ export interface WaterData {
   WM_SumMonth: number;
   WM_SumYear: number;
 }
+
+export interface PowerSummaryData {
+  CreateAt: number;
+  DataDateTime: Date;
+  Device: string;
+  Day01: number;
+  Day02: number;
+  Day03: number;
+  Day04: number;
+  Day05: number;
+  Day06: number;
+  Day07: number;
+  Day08: number;
+  Day09: number;
+  Day10: number;
+  Day11: number;
+  Day12: number;
+  Day13: number;
+  Day14: number;
+  Day15: number;
+  Day16: number;
+  Day17: number;
+  Day18: number;
+  Day19: number;
+  Day20: number;
+  Day21: number;
+  Day22: number;
+  Day23: number;
+  Day24: number;
+  Day25: number;
+  Day26: number;
+  Day27: number;
+  Day28: number;
+  Day29: number;
+  Day30: number;
+  Day31: number;
+  kW: number;
+  kWhM01: number;
+  kWhM02: number;
+  kWhM03: number;
+  kWhM04: number;
+  kWhM05: number;
+  kWhM06: number;
+  kWhM07: number;
+  kWhM08: number;
+  kWhM09: number;
+  kWhM10: number;
+  kWhM11: number;
+  kWhM12: number;
+  kWhYear: number;
+}

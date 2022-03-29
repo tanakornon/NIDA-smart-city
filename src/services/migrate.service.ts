@@ -1,40 +1,17 @@
 import { DustRepository } from '../repositories/dust.repo';
+import { PowerSummaryRepository } from '../repositories/power-summary.repo';
 import { PowerRepository } from '../repositories/power.repo';
 import { WaterMeterRepository } from '../repositories/water.repo';
-import { DustData, PowerData, WaterData } from '../types/sensor.type';
+import { IRepository } from '../types/repository';
+import { print } from '../utils/log';
 
 export class MigrateService {
   private dustRepo = new DustRepository();
+  private powerSummaryRepo = new PowerSummaryRepository();
   private powerRepo = new PowerRepository();
   private waterRepo = new WaterMeterRepository();
 
-  private transformDustData(data: any): DustData {
-    const date = new Date(data.DataDateTime);
-
-    return {
-      CreateAt: date.getTime() / 1000,
-      DataDateTime: date,
-      Device: data.Device,
-      CO2: data.CO2,
-      Humidity: data.Humidity,
-      PM25: data.PM25,
-      Temperature: data.Temperature
-    };
-  }
-
-  private transformPowerData(data: any): PowerData {
-    const date = new Date(data.DataDateTime);
-
-    return {
-      CreateAt: date.getTime() / 1000,
-      DataDateTime: date,
-      Device: data.Device,
-      kW: data.kW,
-      kWh: data.kWh
-    };
-  }
-
-  private transformWaterData(data: any): WaterData {
+  private transform(data: any): any {
     const date = new Date(data.DataDateTime);
 
     return {
@@ -44,45 +21,37 @@ export class MigrateService {
     };
   }
 
+  private async migrateData(repo: IRepository) {
+    print(' - Extract data ..... ');
+
+    const rawData = await repo.extract();
+
+    print('OK\n');
+    print(' - Transform data ... ');
+
+    const processedData = rawData.map((row) => this.transform(row));
+
+    print('OK\n');
+    print(' - Load data ........ ');
+
+    await repo.load(processedData);
+
+    print('OK\n');
+  }
+
   public async migrateDustData() {
-    process.stdout.write(' - Extract data ..... ');
-    const rawData = await this.dustRepo.extract();
-    process.stdout.write('OK\n');
+    await this.migrateData(this.dustRepo);
+  }
 
-    process.stdout.write(' - Transform data ... ');
-    const processedData = rawData.map((row) => this.transformDustData(row));
-    process.stdout.write('OK\n');
-
-    process.stdout.write(' - Load data ........ ');
-    await this.dustRepo.load(processedData);
-    process.stdout.write('OK\n');
+  public async migratePowerSummaryData() {
+    await this.migrateData(this.powerSummaryRepo);
   }
 
   public async migratePowerData() {
-    process.stdout.write(' - Extract data ..... ');
-    const rawData = await this.powerRepo.queryLatestMeter();
-    process.stdout.write('OK\n');
-
-    process.stdout.write(' - Transform data ... ');
-    const processedData = rawData.map((row) => this.transformPowerData(row));
-    process.stdout.write('OK\n');
-
-    process.stdout.write(' - Load data ........ ');
-    await this.powerRepo.load(processedData);
-    process.stdout.write('OK\n');
+    await this.migrateData(this.powerRepo);
   }
 
   public async migrateWaterData() {
-    process.stdout.write(' - Extract data ..... ');
-    const rawData = await this.waterRepo.queryLatestMeter();
-    process.stdout.write('OK\n');
-
-    process.stdout.write(' - Transform data ... ');
-    const processedData = rawData.map((row) => this.transformWaterData(row));
-    process.stdout.write('OK\n');
-
-    process.stdout.write(' - Load data ........ ');
-    await this.waterRepo.load(processedData);
-    process.stdout.write('OK\n');
+    await this.migrateData(this.waterRepo);
   }
 }

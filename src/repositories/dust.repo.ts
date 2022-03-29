@@ -1,8 +1,9 @@
 import { DustData } from '../types/sensor.type';
-import { post } from '../utils/request';
+import { IRepository } from '../types/repository';
 import mysql, { MySqlRow } from '../utils/mysql';
+import { post } from '../utils/request';
 
-export class DustRepository {
+export class DustRepository implements IRepository {
   private async queryLatestUpdate() {
     const maxDateRows = await mysql.query(`
       SELECT
@@ -39,7 +40,7 @@ export class DustRepository {
     return pm25;
   }
 
-  public async load(data: DustData[]) {
+  public async load(data: DustData[]): Promise<void> {
     await post('log_pm25', data);
   }
 }

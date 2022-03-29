@@ -1,15 +1,15 @@
 import { IRepository } from '../types/repository';
-import { WaterData } from '../types/sensor.type';
+import { PowerSummaryData } from '../types/sensor.type';
 import mysql, { MySqlRow } from '../utils/mysql';
 import { post } from '../utils/request';
 
-export class WaterMeterRepository implements IRepository {
+export class PowerSummaryRepository implements IRepository {
   private async queryLatestUpdate() {
     const maxDateRows = await mysql.query(`
       SELECT
         MAX(DataDateTime) AS maxDate
       FROM
-        watermeter
+        buildingall_total
     `);
 
     const latestUpdate = maxDateRows.shift();
@@ -58,23 +58,22 @@ export class WaterMeterRepository implements IRepository {
         Day29,
         Day30,
         Day31,
-        WM_M01,
-        WM_M02,
-        WM_M03,
-        WM_M04,
-        WM_M05,
-        WM_M06,
-        WM_M07,
-        WM_M08,
-        WM_M09,
-        WM_M10,
-        WM_M11,
-        WM_M12,
-        WM_Year,
-        WM_SumMonth,
-        WM_SumYear
+        kW,
+        kWhM01,
+        kWhM02,
+        kWhM03,
+        kWhM04,
+        kWhM05,
+        kWhM06,
+        kWhM07,
+        kWhM08,
+        kWhM09,
+        kWhM10,
+        kWhM11,
+        kWhM12,
+        kWhYear
       FROM
-        watermeter
+        buildingall_total
       WHERE
         DataDateTime = CAST('${latestUpdate}' AS DATETIME)
     `);
@@ -82,7 +81,7 @@ export class WaterMeterRepository implements IRepository {
     return meter;
   }
 
-  public async load(data: WaterData[]): Promise<void> {
-    await post('log_water', data);
+  public async load(data: PowerSummaryData[]): Promise<void> {
+    await post('log_buildingall_total', data);
   }
 }

@@ -9,6 +9,9 @@ async function main() {
   console.log('Migrate PM2.5 Data');
   await migrate.migrateDustData();
 
+  console.log('Migrate Building All Total Data');
+  await migrate.migratePowerSummaryData();
+
   console.log('Migrate Power Data');
   await migrate.migratePowerData();
 

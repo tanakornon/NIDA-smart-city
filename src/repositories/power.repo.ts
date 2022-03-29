@@ -1,8 +1,9 @@
+import { IRepository } from '../types/repository';
 import { PowerData } from '../types/sensor.type';
-import mysql from '../utils/mysql';
+import mysql, { MySqlRow } from '../utils/mysql';
 import { post } from '../utils/request';
 
-export class PowerRepository {
+export class PowerRepository implements IRepository {
   private async queryLatestUpdate() {
     const maxDateRows = await mysql.query(`
       SELECT
@@ -20,7 +21,7 @@ export class PowerRepository {
     return undefined;
   }
 
-  public async queryLatestMeter() {
+  public async extract(): Promise<MySqlRow[]> {
     const latestUpdate = await this.queryLatestUpdate();
     const meter = await mysql.query(`
       SELECT
@@ -37,7 +38,7 @@ export class PowerRepository {
     return meter;
   }
 
-  public async load(data: PowerData[]) {
+  public async load(data: PowerData[]): Promise<void> {
     await post('log_power', data);
   }
 }
