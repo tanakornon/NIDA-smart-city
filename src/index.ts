@@ -27,24 +27,22 @@ async function daily() {
   await migrate.migratePowerSummaryData();
 }
 
-// cron.schedule('*/1 * * * *', function () {
-//   fifteenthMinute()
-//     .then(() => {
-//       mysql.end();
-//     })
-//     .catch((err) => {
-//       console.error(err.message);
-//     });
-// });
+cron.schedule('*/15 * * * *', function () {
+  fifteenthMinute()
+    .then(() => {
+      mysql.end();
+    })
+    .catch((err) => {
+      console.error(err.message);
+    });
+});
 
-// cron.schedule('0 0 * * *', function () {
-//   daily()
-//     .then(() => {
-//       mysql.end();
-//     })
-//     .catch((err) => {
-//       console.error(err.message);
-//     });
-// });
-
-daily();
+cron.schedule('0 0 * * *', function () {
+  daily()
+    .then(() => {
+      mysql.end();
+    })
+    .catch((err) => {
+      console.error(err.message);
+    });
+});
