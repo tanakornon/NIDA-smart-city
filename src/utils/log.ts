@@ -1,3 +1,3 @@
-export function print(str: string) {
+export function printlog(str: string) {
   process.stdout.write(str);
 }

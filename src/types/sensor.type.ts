@@ -16,6 +16,14 @@ export interface PowerData {
   kWh: number;
 }
 
+export interface PowerSummaryData {
+  CreateAt: number;
+  Date: Date;
+  Building: string;
+  kW: number;
+  kWh: number;
+}
+
 export interface WaterData {
   CreateAt: number;
   DataDateTime: Date;
@@ -68,7 +76,7 @@ export interface WaterData {
   WM_SumYear: number;
 }
 
-export interface PowerSummaryData {
+export interface BuildingAllData {
   CreateAt: number;
   DataDateTime: Date;
   Device: string;

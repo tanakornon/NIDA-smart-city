@@ -1,16 +1,17 @@
 import cron from 'node-cron';
 
 import { MigrateService } from './services/migrate.service';
+import { PowerSummaryService } from './services/power-summary.service';
 import mysql from './utils/mysql';
 
-async function main() {
+async function fifteenthMinute() {
   const migrate = new MigrateService();
 
   console.log('Migrate PM2.5 Data');
   await migrate.migrateDustData();
 
   console.log('Migrate Building All Total Data');
-  await migrate.migratePowerSummaryData();
+  await migrate.migrateBuildingAllData();
 
   console.log('Migrate Power Data');
   await migrate.migratePowerData();
@@ -19,12 +20,31 @@ async function main() {
   await migrate.migrateWaterData();
 }
 
-cron.schedule('*/15 * * * *', function () {
-  main()
-    .then(() => {
-      mysql.end();
-    })
-    .catch((err) => {
-      console.error(err.message);
-    });
-});
+async function daily() {
+  const migrate = new PowerSummaryService();
+
+  console.log('Migrate Power Summary Data');
+  await migrate.migratePowerSummaryData();
+}
+
+// cron.schedule('*/1 * * * *', function () {
+//   fifteenthMinute()
+//     .then(() => {
+//       mysql.end();
+//     })
+//     .catch((err) => {
+//       console.error(err.message);
+//     });
+// });
+
+// cron.schedule('0 0 * * *', function () {
+//   daily()
+//     .then(() => {
+//       mysql.end();
+//     })
+//     .catch((err) => {
+//       console.error(err.message);
+//     });
+// });
+
+daily();

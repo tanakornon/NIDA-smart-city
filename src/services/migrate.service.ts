@@ -1,13 +1,13 @@
+import { BuildingAllRepository } from '../repositories/building-all.repo';
 import { DustRepository } from '../repositories/dust.repo';
-import { PowerSummaryRepository } from '../repositories/power-summary.repo';
 import { PowerRepository } from '../repositories/power.repo';
 import { WaterMeterRepository } from '../repositories/water.repo';
 import { IRepository } from '../types/repository';
-import { print } from '../utils/log';
+import { printlog } from '../utils/log';
 
 export class MigrateService {
+  private buildingAllRepo = new BuildingAllRepository();
   private dustRepo = new DustRepository();
-  private powerSummaryRepo = new PowerSummaryRepository();
   private powerRepo = new PowerRepository();
   private waterRepo = new WaterMeterRepository();
 
@@ -22,29 +22,29 @@ export class MigrateService {
   }
 
   private async migrateData(repo: IRepository) {
-    print(' - Extract data ..... ');
+    printlog(' - Extract data ..... ');
 
     const rawData = await repo.extract();
 
-    print('OK\n');
-    print(' - Transform data ... ');
+    printlog('OK\n');
+    printlog(' - Transform data ... ');
 
     const processedData = rawData.map((row) => this.transform(row));
 
-    print('OK\n');
-    print(' - Load data ........ ');
+    printlog('OK\n');
+    printlog(' - Load data ........ ');
 
     await repo.load(processedData);
 
-    print('OK\n');
+    printlog('OK\n');
   }
 
   public async migrateDustData() {
     await this.migrateData(this.dustRepo);
   }
 
-  public async migratePowerSummaryData() {
-    await this.migrateData(this.powerSummaryRepo);
+  public async migrateBuildingAllData() {
+    await this.migrateData(this.buildingAllRepo);
   }
 
   public async migratePowerData() {
