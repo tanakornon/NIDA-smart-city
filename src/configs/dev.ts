@@ -6,5 +6,5 @@ export const mysqlConfig: mysql.ConnectionConfig = {
   user: 'root',
   password: 'password',
   database: 'advreports_production',
-  timezone: '+07'
+  timezone: 'utc'
 };

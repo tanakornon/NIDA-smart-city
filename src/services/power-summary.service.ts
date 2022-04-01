@@ -1,12 +1,13 @@
 import { PowerSummaryRepository } from '../repositories/power-summary.repo';
 import { PowerSummaryData } from '../types/sensor.type';
+import { getLocalDateTime } from '../utils/date';
 import { printlog } from '../utils/log';
 
 export class PowerSummaryService {
   private repo = new PowerSummaryRepository();
 
   private transform(data: any): PowerSummaryData {
-    const date = new Date(data.DataDateTime);
+    const date = getLocalDateTime();
     let building = 'Other';
 
     const buildingList = {
@@ -36,8 +37,8 @@ export class PowerSummaryService {
     });
 
     return {
-      CreateAt: Math.floor(Date.now() / 1000),
-      Date: new Date(Date.now()),
+      CreateAt: date.getTime() / 1000,
+      Date: date,
       Building: building,
       kW: data.kW,
       kWh: data.kWh
@@ -69,6 +70,8 @@ export class PowerSummaryService {
 
     const processedData = rawData.map((row) => this.transform(row));
     const summarizeData = this.summarize(processedData);
+
+    console.log(summarizeData);
 
     printlog('OK\n');
     printlog(' - Load data ........ ');

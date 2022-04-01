@@ -4,3 +4,10 @@ export function getYesterdayDate() {
   date.setHours(0, 0, 0, 0);
   return date;
 }
+
+export function getLocalDateTime() {
+  const offset = new Date().getTimezoneOffset();
+  const epoch = Date.now() - offset * 60 * 1000;
+  const localTime = new Date(epoch);
+  return localTime;
+}

@@ -6,7 +6,7 @@ export const mysqlConfig: mysql.ConnectionConfig = {
   user: 'smartcity',
   password: 'P@ssw0rd',
   database: 'advreports_production',
-  timezone: '+07'
+  timezone: 'utc'
 };
 
 export const mongoEndpoint = 'http://10.10.161.37:8000';
