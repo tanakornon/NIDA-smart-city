@@ -23,7 +23,7 @@ export class BuildingAllRepository implements IRepository {
 
   public async extract(): Promise<MySqlRow[]> {
     const latestUpdate = await this.queryLatestUpdate();
-    const meter = await mysql.query(`
+    const data = await mysql.query(`
       SELECT
         DataDateTime,
         Device,
@@ -78,7 +78,7 @@ export class BuildingAllRepository implements IRepository {
         DataDateTime = CAST('${latestUpdate}' AS DATETIME)
     `);
 
-    return meter;
+    return data;
   }
 
   public async load(data: BuildingAllData[]): Promise<void> {

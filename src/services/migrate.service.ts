@@ -1,5 +1,6 @@
 import { BuildingAllRepository } from '../repositories/building-all.repo';
 import { DustRepository } from '../repositories/dust.repo';
+import { OaqRepository } from '../repositories/oaq.repo';
 import { PowerRepository } from '../repositories/power.repo';
 import { WaterMeterRepository } from '../repositories/water.repo';
 import { IRepository } from '../types/repository';
@@ -9,6 +10,7 @@ export class MigrateService {
   private buildingAllRepo = new BuildingAllRepository();
   private dustRepo = new DustRepository();
   private powerRepo = new PowerRepository();
+  private oaqRepo = new OaqRepository();
   private waterRepo = new WaterMeterRepository();
 
   private transform(data: any): any {
@@ -49,6 +51,10 @@ export class MigrateService {
 
   public async migratePowerData() {
     await this.migrateData(this.powerRepo);
+  }
+
+  public async migrateOaqData() {
+    await this.migrateData(this.oaqRepo);
   }
 
   public async migrateWaterData() {

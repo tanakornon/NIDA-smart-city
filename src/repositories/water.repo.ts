@@ -23,7 +23,7 @@ export class WaterMeterRepository implements IRepository {
 
   public async extract(): Promise<MySqlRow[]> {
     const latestUpdate = await this.queryLatestUpdate();
-    const meter = await mysql.query(`
+    const data = await mysql.query(`
       SELECT
         DataDateTime,
         Device,
@@ -79,7 +79,7 @@ export class WaterMeterRepository implements IRepository {
         DataDateTime = CAST('${latestUpdate}' AS DATETIME)
     `);
 
-    return meter;
+    return data;
   }
 
   public async load(data: WaterData[]): Promise<void> {

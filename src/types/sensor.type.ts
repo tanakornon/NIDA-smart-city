@@ -24,6 +24,21 @@ export interface PowerSummaryData {
   kWh: number;
 }
 
+export interface OaqData {
+  CreateAt: number;
+  DataDateTime: Date;
+  Device: string;
+  AirTemperature: number;
+  CO2: number;
+  EC: number;
+  Humidity: number;
+  PH: number;
+  PM10: number;
+  PM25: number;
+  Turbidity: number;
+  WaterTemperature: number;
+}
+
 export interface WaterData {
   CreateAt: number;
   DataDateTime: Date;

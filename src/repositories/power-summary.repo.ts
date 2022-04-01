@@ -5,7 +5,7 @@ import { post } from '../utils/request';
 
 export class PowerSummaryRepository implements IRepository {
   public async extract(): Promise<MySqlRow[]> {
-    const meter = await mysql.query(`
+    const data = await mysql.query(`
       SELECT
         Device,
         IFNULL(SUM(kW), 0) AS kW,
@@ -20,7 +20,7 @@ export class PowerSummaryRepository implements IRepository {
         Device
     `);
 
-    return meter;
+    return data;
   }
 
   public async load(data: PowerSummaryData[]): Promise<void> {

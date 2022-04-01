@@ -1,15 +1,15 @@
-import { DustData } from '../types/sensor.type';
+import { OaqData } from '../types/sensor.type';
 import { IRepository } from '../types/repository';
 import mysql, { MySqlRow } from '../utils/mysql';
 import { post } from '../utils/request';
 
-export class DustRepository implements IRepository {
+export class OaqRepository implements IRepository {
   private async queryLatestUpdate() {
     const maxDateRows = await mysql.query(`
       SELECT
         MAX(DataDateTime) AS maxDate
       FROM
-        pm25
+        oaq
     `);
 
     const latestUpdate = maxDateRows.shift();
@@ -27,12 +27,17 @@ export class DustRepository implements IRepository {
       SELECT
         DataDateTime,
         Device,
+        Air_Temperature   AS AirTemperature,
         CO2,
+        EC,
         Humidity,
-        PM25,
-        Temperature
+        PH,
+        PM10,
+        PM2_5             AS PM25,
+        Turbidity,
+        Water_Temperature AS WaterTemperature
       FROM
-        pm25
+        oaq
       WHERE
         DataDateTime = CAST('${latestUpdate}' AS DATETIME)
     `);
@@ -40,7 +45,7 @@ export class DustRepository implements IRepository {
     return data;
   }
 
-  public async load(data: DustData[]): Promise<void> {
-    await post('log_pm25', data);
+  public async load(data: OaqData[]): Promise<void> {
+    await post('log_water_quality', data);
   }
 }
