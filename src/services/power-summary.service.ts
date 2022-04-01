@@ -1,6 +1,5 @@
 import { PowerSummaryRepository } from '../repositories/power-summary.repo';
 import { PowerSummaryData } from '../types/sensor.type';
-import { getYesterdayDate } from '../utils/date';
 import { printlog } from '../utils/log';
 
 export class PowerSummaryService {
@@ -37,8 +36,8 @@ export class PowerSummaryService {
     });
 
     return {
-      CreateAt: Date.now() / 1000,
-      Date: getYesterdayDate(),
+      CreateAt: Math.floor(Date.now() / 1000),
+      Date: new Date(Date.now()),
       Building: building,
       kW: data.kW,
       kWh: data.kWh

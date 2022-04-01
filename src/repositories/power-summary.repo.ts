@@ -14,8 +14,8 @@ export class PowerSummaryRepository implements IRepository {
         powermeter
       WHERE
         DataDateTime 
-        BETWEEN DATE_SUB( CURDATE(), INTERVAL 2 DAY ) 
-        AND DATE_SUB( CURDATE(), INTERVAL 1 DAY )
+        BETWEEN DATE_SUB( CURDATE(), INTERVAL 1 DAY ) 
+        AND CURDATE()
       GROUP BY
         Device
     `);
