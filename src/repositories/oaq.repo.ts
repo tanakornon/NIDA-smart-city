@@ -12,6 +12,8 @@ export class OaqRepository implements IRepository {
         oaq
     `);
 
+    console.log(maxDateRows);
+
     const latestUpdate = maxDateRows.shift();
 
     if (latestUpdate) {
