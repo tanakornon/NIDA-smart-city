@@ -7,7 +7,7 @@ export class PowerRepository implements IRepository {
   private async queryLatestUpdate() {
     const maxDateRows = await mysql.query(`
       SELECT
-        MAX(DataDateTime) AS maxDate
+        DATE_FORMAT(MAX(DataDateTime), '%Y-%m-%dT%TZ') AS maxDate
       FROM
         powermeter
     `);
@@ -32,7 +32,7 @@ export class PowerRepository implements IRepository {
       FROM
         powermeter
       WHERE
-        DataDateTime = CAST('${latestUpdate}' AS DATETIME)
+        DataDateTime = STR_TO_DATE('${latestUpdate}', '%Y-%m-%dT%TZ')
     `);
 
     return data;

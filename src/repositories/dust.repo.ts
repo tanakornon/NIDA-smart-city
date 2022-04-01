@@ -7,7 +7,7 @@ export class DustRepository implements IRepository {
   private async queryLatestUpdate() {
     const maxDateRows = await mysql.query(`
       SELECT
-        MAX(DataDateTime) AS maxDate
+        DATE_FORMAT(MAX(DataDateTime), '%Y-%m-%dT%TZ') AS maxDate
       FROM
         pm25
     `);
@@ -34,7 +34,7 @@ export class DustRepository implements IRepository {
       FROM
         pm25
       WHERE
-        DataDateTime = CAST('${latestUpdate}' AS DATETIME)
+        DataDateTime = STR_TO_DATE('${latestUpdate}', '%Y-%m-%dT%TZ')
     `);
 
     return data;

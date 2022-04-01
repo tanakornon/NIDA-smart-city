@@ -7,7 +7,7 @@ export class OaqRepository implements IRepository {
   private async queryLatestUpdate() {
     const maxDateRows = await mysql.query(`
       SELECT
-        MAX(DataDateTime) AS maxDate
+        DATE_FORMAT(MAX(DataDateTime), '%Y-%m-%dT%TZ') AS maxDate
       FROM
         oaq
     `);
@@ -41,7 +41,7 @@ export class OaqRepository implements IRepository {
       FROM
         oaq
       WHERE
-        DataDateTime = CAST('${latestUpdate}' AS DATETIME)
+        DataDateTime = STR_TO_DATE('${latestUpdate}', '%Y-%m-%dT%TZ')
     `);
 
     return data;

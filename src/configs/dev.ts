@@ -5,5 +5,6 @@ export const mysqlConfig: mysql.ConnectionConfig = {
   port: 3306,
   user: 'root',
   password: 'password',
-  database: 'advreports_production'
+  database: 'advreports_production',
+  timezone: 'utc'
 };

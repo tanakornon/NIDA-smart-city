@@ -7,7 +7,7 @@ export class WaterMeterRepository implements IRepository {
   private async queryLatestUpdate() {
     const maxDateRows = await mysql.query(`
       SELECT
-        MAX(DataDateTime) AS maxDate
+        DATE_FORMAT(MAX(DataDateTime), '%Y-%m-%dT%TZ') AS maxDate
       FROM
         watermeter
     `);
@@ -76,7 +76,7 @@ export class WaterMeterRepository implements IRepository {
       FROM
         watermeter
       WHERE
-        DataDateTime = CAST('${latestUpdate}' AS DATETIME)
+        DataDateTime = STR_TO_DATE('${latestUpdate}', '%Y-%m-%dT%TZ')
     `);
 
     return data;
