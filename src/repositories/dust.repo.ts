@@ -40,6 +40,25 @@ export class DustRepository implements IRepository {
     return data;
   }
 
+  public async extractManual(): Promise<MySqlRow[]> {
+    const data = await mysql.query(`
+      SELECT
+        DataDateTime,
+        Device,
+        CO2,
+        Humidity,
+        PM25,
+        Temperature
+      FROM
+        pm25
+      WHERE
+        MOD ( DATE_FORMAT( DataDateTime, '%i' ), 15 ) = 0 
+        AND DATEDIFF( DataDateTime, CURRENT_TIMESTAMP ) >= -5
+    `);
+
+    return data;
+  }
+
   public async load(data: DustData[]): Promise<void> {
     await post('log_pm25', data);
   }

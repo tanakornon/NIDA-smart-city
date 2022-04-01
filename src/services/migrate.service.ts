@@ -1,4 +1,3 @@
-import { raw } from 'mysql';
 import { BuildingAllRepository } from '../repositories/building-all.repo';
 import { DustRepository } from '../repositories/dust.repo';
 import { OaqRepository } from '../repositories/oaq.repo';
@@ -27,7 +26,7 @@ export class MigrateService {
   private async migrateData(repo: IRepository) {
     printlog(' - Extract data ..... ');
 
-    const rawData = await repo.extract();
+    const rawData = await repo.extractManual();
 
     printlog('OK\n');
     printlog(' - Transform data ... ');

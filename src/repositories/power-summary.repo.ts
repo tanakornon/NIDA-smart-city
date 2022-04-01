@@ -23,6 +23,10 @@ export class PowerSummaryRepository implements IRepository {
     return data;
   }
 
+  public async extractManual(): Promise<MySqlRow[]> {
+    return [];
+  }
+
   public async load(data: PowerSummaryData[]): Promise<void> {
     await post('log_power_summary', data);
   }

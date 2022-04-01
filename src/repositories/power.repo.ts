@@ -38,6 +38,23 @@ export class PowerRepository implements IRepository {
     return data;
   }
 
+  public async extractManual(): Promise<MySqlRow[]> {
+    const data = await mysql.query(`
+      SELECT
+        DataDateTime,
+        Device,
+        kW,
+        kWh
+      FROM
+        powermeter
+      WHERE
+        MOD ( DATE_FORMAT( DataDateTime, '%i' ), 15 ) = 0
+        AND DATEDIFF( DataDateTime, CURRENT_TIMESTAMP ) >= -5
+    `);
+
+    return data;
+  }
+
   public async load(data: PowerData[]): Promise<void> {
     await post('log_power', data);
   }
