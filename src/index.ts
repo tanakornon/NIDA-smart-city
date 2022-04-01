@@ -7,17 +7,17 @@ import mysql from './utils/mysql';
 async function fifteenthMinute() {
   const migrate = new MigrateService();
 
-  console.log('Migrate PM2.5 Data');
-  await migrate.migrateDustData();
+  // console.log('Migrate PM2.5 Data');
+  // await migrate.migrateDustData();
 
-  console.log('Migrate Building All Total Data');
-  await migrate.migrateBuildingAllData();
+  // console.log('Migrate Building All Total Data');
+  // await migrate.migrateBuildingAllData();
 
-  console.log('Migrate Power Data');
-  await migrate.migratePowerData();
+  // console.log('Migrate Power Data');
+  // await migrate.migratePowerData();
 
-  console.log('Migrate Water Data');
-  await migrate.migrateWaterData();
+  // console.log('Migrate Water Data');
+  // await migrate.migrateWaterData();
 
   console.log('Migrate Water Quality Data');
   await migrate.migrateOaqData();

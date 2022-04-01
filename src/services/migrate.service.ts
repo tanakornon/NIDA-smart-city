@@ -27,11 +27,13 @@ export class MigrateService {
     printlog(' - Extract data ..... ');
 
     const rawData = await repo.extract();
+    console.log(rawData);
 
     printlog('OK\n');
     printlog(' - Transform data ... ');
 
     const processedData = rawData.map((row) => this.transform(row));
+    console.log(processedData);
 
     printlog('OK\n');
     printlog(' - Load data ........ ');
