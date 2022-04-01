@@ -28,21 +28,13 @@ async function daily() {
 }
 
 cron.schedule('*/15 * * * *', function () {
-  fifteenthMinute()
-    .then(() => {
-      mysql.end();
-    })
-    .catch((err) => {
-      console.error(err.message);
-    });
+  fifteenthMinute().catch((err) => {
+    console.error(err.message);
+  });
 });
 
 cron.schedule('0 0 * * *', function () {
-  daily()
-    .then(() => {
-      mysql.end();
-    })
-    .catch((err) => {
-      console.error(err.message);
-    });
+  daily().catch((err) => {
+    console.error(err.message);
+  });
 });
