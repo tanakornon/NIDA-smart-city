@@ -18,6 +18,9 @@ async function fifteenthMinute() {
 
   console.log('Migrate Water Data');
   await migrate.migrateWaterData();
+
+  console.log('Migrate Water Quality Data');
+  await migrate.migrateOaqData();
 }
 
 async function daily() {
