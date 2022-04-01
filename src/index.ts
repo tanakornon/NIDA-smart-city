@@ -30,7 +30,7 @@ async function daily() {
   await migrate.migratePowerSummaryData();
 }
 
-cron.schedule('*/15 * * * *', function () {
+cron.schedule('*/1 * * * *', function () {
   fifteenthMinute().catch((err) => {
     console.error(err.message);
   });

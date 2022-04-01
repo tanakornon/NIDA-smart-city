@@ -37,7 +37,7 @@ export class PowerSummaryService {
     });
 
     return {
-      CreateAt: Date.now(),
+      CreateAt: Date.now() / 1000,
       Date: getYesterdayDate(),
       Building: building,
       kW: data.kW,
