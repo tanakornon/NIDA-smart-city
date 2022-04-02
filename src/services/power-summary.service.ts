@@ -71,8 +71,6 @@ export class PowerSummaryService {
     const processedData = rawData.map((row) => this.transform(row));
     const summarizeData = this.summarize(processedData);
 
-    console.log(summarizeData);
-
     printlog('OK\n');
     printlog(' - Load data ........ ');
 
