@@ -26,7 +26,7 @@ export class MigrateService {
   private async migrateData(repo: IRepository) {
     printlog(' - Extract data ..... ');
 
-    const rawData = await repo.extractManual();
+    const rawData = await repo.extract();
 
     printlog('OK\n');
     printlog(' - Transform data ... ');

@@ -27,10 +27,10 @@ async function main() {
   // await powerSummaryService.migratePowerSummaryData();
 }
 
-// cron.schedule('*/15 * * * *', function () {
-//   main().catch((err) => {
-//     console.error(err.message);
-//   });
-// });
+cron.schedule('*/15 * * * *', function () {
+  main().catch((err) => {
+    console.error(err.message);
+  });
+});
 
 main();
