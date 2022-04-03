@@ -23,12 +23,14 @@ async function main() {
   console.log('Migrate Water Quality Data');
   await migrateService.migrateOaqData();
 
-  console.log('Migrate Power Summary Data');
-  await powerSummaryService.migratePowerSummaryData();
+  // console.log('Migrate Power Summary Data');
+  // await powerSummaryService.migratePowerSummaryData();
 }
 
-cron.schedule('*/15 * * * *', function () {
-  main().catch((err) => {
-    console.error(err.message);
-  });
-});
+// cron.schedule('*/15 * * * *', function () {
+//   main().catch((err) => {
+//     console.error(err.message);
+//   });
+// });
+
+main();
