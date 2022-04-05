@@ -17,12 +17,13 @@ class PowerTotalService {
     NIDASUMPUN: ['NIDASUMPUN'],
     RATCHAPHRUEK: ['RATCHAPHRUEK', 'PM05'],
     SERITHAI: ['SERITHAI'],
-    SIAM: ['SIAM', 'PM03', 'PM04']
+    SIAM: ['SIAM', 'PM03', 'PM04'],
+    OTHER: []
   };
 
   private rawToObject(data: any): PowerTotalData {
     const date = getLocalDateTime();
-    let building = 'Other';
+    let building = 'OTHER';
 
     Object.entries(this.buildingList).every((entry) => {
       const [key, value] = entry;
