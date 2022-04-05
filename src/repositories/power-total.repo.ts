@@ -33,7 +33,7 @@ export class PowerSummaryRepository {
   }
 
   public async getAllSum(key: string) {
-    console.log('getAllSum');
+    console.log('getAllSum', key);
     return await redis.getRange(key);
   }
 
@@ -46,7 +46,7 @@ export class PowerSummaryRepository {
   }
 
   public async setByDate(key: string, value: string) {
-    console.log('setByDate');
+    console.log('setByDate', key);
     const index = getLocalDate() - 1;
     await redis.lset(key, index, value);
   }
