@@ -25,7 +25,7 @@ export const mssqlConfig: mssql.config = {
 };
 
 export const redisConfig: RedisClientOptions = {
-  url: 'redis://10.10.161.137'
+  url: 'redis://10.10.161.37'
 };
 
 export const mongoEndpoint = 'http://10.10.161.37:8000';
