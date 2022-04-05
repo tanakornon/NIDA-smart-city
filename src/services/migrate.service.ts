@@ -6,7 +6,7 @@ import { WaterMeterRepository } from '../repositories/water.repo';
 import { IRepository } from '../types/repository';
 import { printlog } from '../utils/log';
 
-export class MigrateService {
+class MigrateService {
   private buildingAllRepo = new BuildingAllRepository();
   private dustRepo = new DustRepository();
   private powerRepo = new PowerRepository();
@@ -61,3 +61,5 @@ export class MigrateService {
     await this.migrateData(this.waterRepo);
   }
 }
+
+export default new MigrateService();

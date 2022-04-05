@@ -1,7 +1,7 @@
 import { DustData } from '../types/sensor.type';
 import { IRepository } from '../types/repository';
-import mysql, { MySqlRow } from '../utils/mysql';
-import { post } from '../utils/request';
+import mysql, { MySqlRow } from '../databases/mysql';
+import { post } from '../databases/mongo';
 
 export class DustRepository implements IRepository {
   private async queryLatestUpdate() {

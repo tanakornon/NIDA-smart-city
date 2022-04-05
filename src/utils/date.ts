@@ -11,3 +11,7 @@ export function getLocalDateTime() {
   const localTime = new Date(epoch);
   return localTime;
 }
+
+export function getLocalDate() {
+  return getLocalDateTime().getDate();
+}

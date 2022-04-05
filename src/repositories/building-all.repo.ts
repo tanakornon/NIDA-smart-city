@@ -1,7 +1,7 @@
 import { IRepository } from '../types/repository';
 import { BuildingAllData } from '../types/sensor.type';
-import mysql, { MySqlRow } from '../utils/mysql';
-import { post } from '../utils/request';
+import mysql, { MySqlRow } from '../databases/mysql';
+import { post } from '../databases/mongo';
 
 export class BuildingAllRepository implements IRepository {
   private async queryLatestUpdate() {

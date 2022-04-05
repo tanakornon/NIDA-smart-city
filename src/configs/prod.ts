@@ -1,5 +1,6 @@
 import * as mssql from 'mssql';
 import * as mysql from 'mysql';
+import { RedisClientOptions } from 'redis';
 
 export const mysqlConfig: mysql.ConnectionConfig = {
   host: '10.10.111.30',
@@ -21,6 +22,10 @@ export const mssqlConfig: mssql.config = {
     enableArithAbort: true,
     trustServerCertificate: true
   }
+};
+
+export const redisConfig: RedisClientOptions = {
+  url: '10.10.161.137'
 };
 
 export const mongoEndpoint = 'http://10.10.161.37:8000';

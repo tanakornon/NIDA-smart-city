@@ -1,4 +1,4 @@
-import { MySqlRow } from '../utils/mysql';
+import { MySqlRow } from '../databases/mysql';
 
 export interface IRepository {
   extract: () => Promise<MySqlRow[]>;

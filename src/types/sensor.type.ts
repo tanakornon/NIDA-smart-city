@@ -16,7 +16,7 @@ export interface PowerData {
   kWh: number;
 }
 
-export interface PowerSummaryData {
+export interface PowerTotalData {
   CreateAt: number;
   Date: Date;
   Building: string;
