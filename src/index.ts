@@ -12,20 +12,20 @@ async function setup() {
 }
 
 async function main() {
-  // console.log('Migrate PM2.5 Data');
-  // await MigrateService.migrateDustData();
+  console.log('Migrate PM2.5 Data');
+  await MigrateService.migrateDustData();
 
-  // console.log('Migrate Building All Total Data');
-  // await MigrateService.migrateBuildingAllData();
+  console.log('Migrate Building All Total Data');
+  await MigrateService.migrateBuildingAllData();
 
-  // console.log('Migrate Power Data');
-  // await MigrateService.migratePowerData();
+  console.log('Migrate Power Data');
+  await MigrateService.migratePowerData();
 
-  // console.log('Migrate Water Data');
-  // await MigrateService.migrateWaterData();
+  console.log('Migrate Water Data');
+  await MigrateService.migrateWaterData();
 
-  // console.log('Migrate Water Quality Data');
-  // await MigrateService.migrateOaqData();
+  console.log('Migrate Water Quality Data');
+  await MigrateService.migrateOaqData();
 
   if (!semaphore) {
     console.log('Migrate Power Summary Data');
@@ -44,15 +44,13 @@ async function monthly() {
 }
 
 setup().then(() => {
-  main();
+  cron.schedule('0 0 1 * *', function () {
+    monthly();
+  });
 
-  // cron.schedule('0 0 1 * *', function () {
-  //   monthly();
-  // });
-
-  // cron.schedule('*/15 * * * *', function () {
-  //   main();
-  // });
+  cron.schedule('*/15 * * * *', function () {
+    main();
+  });
 
   // // At 00:00 on day-of-month 1.
   // cron.schedule('0 0 1 * *', function () {
