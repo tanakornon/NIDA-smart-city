@@ -94,7 +94,9 @@ class PowerTotalService {
           kWh: kWhList
         };
       })
-    );
+    ).catch((err) => {
+      console.log(err.message);
+    });
 
     printlog('OK\n');
     printlog(' - Load data ........ ');
