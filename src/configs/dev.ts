@@ -1,4 +1,5 @@
 import * as mysql from 'mysql';
+import { RedisClientOptions } from 'redis';
 
 export const mysqlConfig: mysql.ConnectionConfig = {
   host: 'localhost',
@@ -7,4 +8,8 @@ export const mysqlConfig: mysql.ConnectionConfig = {
   password: 'password',
   database: 'advreports_production',
   timezone: '+07'
+};
+
+export const redisConfig: RedisClientOptions = {
+  url: 'redis://127.0.0.1'
 };
