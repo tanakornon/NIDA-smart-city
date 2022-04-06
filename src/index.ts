@@ -30,8 +30,6 @@ async function main() {
   if (!semaphore) {
     console.log('Migrate Power Summary Data');
     await PowerTotalService.migrate();
-  } else {
-    console.log('Blocked by semaphore!!!!');
   }
 }
 
