@@ -77,7 +77,7 @@ class PowerTotalService {
     const summarizeData = this.summarize(processedData);
     const finalizeData = await Promise.all(
       summarizeData.map(async (data) => {
-        await this.repo.setByDate(data.Building, `${data.kW}|${data.kW}`);
+        await this.repo.setByDate(data.Building, `${data.kW}|${data.kWh}`);
 
         const sumList = await this.repo.getAllSum(data.Building);
         const kWList: number[] = [];
