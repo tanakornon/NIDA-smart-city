@@ -13,5 +13,5 @@ export function getLocalDateTime() {
 }
 
 export function getLocalDate() {
-  return getLocalDateTime().getDate();
+  return getLocalDateTime().getUTCDate();
 }
