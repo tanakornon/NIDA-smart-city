@@ -3,36 +3,36 @@ import cron from 'node-cron';
 import MigrateService from './services/migrate.service';
 import PowerTotalService from './services/power-total.service';
 import redis from './databases/redis';
-
-require('log-timestamp');
+import { printlog } from './utils/log';
 
 async function setup() {
+  printlog('Setup');
   await redis.start();
   await PowerTotalService.validateDailySum();
 }
 
 async function main() {
-  console.log('Migrate PM2.5 Data');
+  printlog('Migrate PM2.5 Data');
   await MigrateService.migrateDustData();
 
-  console.log('Migrate Building All Total Data');
+  printlog('Migrate Building All Total Data');
   await MigrateService.migrateBuildingAllData();
 
-  console.log('Migrate Power Data');
+  printlog('Migrate Power Data');
   await MigrateService.migratePowerData();
 
-  console.log('Migrate Water Data');
+  printlog('Migrate Water Data');
   await MigrateService.migrateWaterData();
 
-  console.log('Migrate Water Quality Data');
+  printlog('Migrate Water Quality Data');
   await MigrateService.migrateOaqData();
 
-  console.log('Migrate Power Summary Data');
+  printlog('Migrate Power Summary Data');
   await PowerTotalService.migrate();
 }
 
 async function monthly() {
-  console.log('Clear Power Summary Data');
+  printlog('Clear Power Summary Data');
   await PowerTotalService.clearDailySum();
 }
 

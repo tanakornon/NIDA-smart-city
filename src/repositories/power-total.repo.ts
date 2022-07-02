@@ -20,6 +20,8 @@ export class PowerSummaryRepository {
         Device
     `);
 
+    console.log(data);
+
     return data;
   }
 

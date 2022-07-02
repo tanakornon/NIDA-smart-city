@@ -1,3 +1,5 @@
+require('log-timestamp');
+
 export function printlog(str: string) {
-  process.stdout.write(str);
+  console.log(str);
 }

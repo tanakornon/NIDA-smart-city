@@ -70,7 +70,6 @@ class PowerTotalService {
 
     const rawData = await this.repo.extract();
 
-    printlog('OK\n');
     printlog(' - Transform data ... ');
 
     const processedData = rawData.map((row) => this.rawToObject(row));
@@ -99,12 +98,9 @@ class PowerTotalService {
       console.log(err.message);
     });
 
-    printlog('OK\n');
     printlog(' - Load data ........ ');
 
     await this.repo.load(finalizeData);
-
-    printlog('OK\n');
   }
 
   private async initDailySum(building: string) {
