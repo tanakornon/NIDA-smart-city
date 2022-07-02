@@ -24,21 +24,21 @@ class MigrateService {
   }
 
   private async migrateData(repo: IRepository) {
-    printlog(' - Extract data ..... ');
+    console.log(' - Extract data ..... ');
 
     const rawData = await repo.extract();
 
-    printlog('OK\n');
-    printlog(' - Transform data ... ');
+    console.log('OK\n');
+    console.log(' - Transform data ... ');
 
     const processedData = rawData.map((row) => this.transform(row));
 
-    printlog('OK\n');
-    printlog(' - Load data ........ ');
+    console.log('OK\n');
+    console.log(' - Load data ........ ');
 
     await repo.load(processedData);
 
-    printlog('OK\n');
+    console.log('OK\n');
   }
 
   public async migrateDustData() {

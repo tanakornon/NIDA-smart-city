@@ -3,6 +3,7 @@ import cron from 'node-cron';
 import MigrateService from './services/migrate.service';
 import PowerTotalService from './services/power-total.service';
 import redis from './databases/redis';
+
 require('log-timestamp');
 
 async function setup() {

@@ -29,7 +29,7 @@ export class DustRepository implements IRepository {
         Device,
         COALESCE(CO2, CO2_Outdoor)                  AS CO2,
         COALESCE(Humidity, Humidity_Outdoor)        AS Humidity,
-        COALESCE(PM25, PM25_Outdoor)                 AS PM25,
+        COALESCE(PM25, PM25_Outdoor)                AS PM25,
         COALESCE(Temperature, Temperature_Outdoor)  AS Temperature
       FROM
         pm25
