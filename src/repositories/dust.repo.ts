@@ -27,10 +27,10 @@ export class DustRepository implements IRepository {
       SELECT
         DataDateTime,
         Device,
-        CO2,
-        Humidity,
-        PM25,
-        Temperature
+        COALESCE(CO2, CO2_Outdoor)                  AS CO2,
+        COALESCE(Humidity, Humidity_Outdoor)        AS Humidity,
+        COALESCE(PM25, PM2_Outdoor)                 AS PM25,
+        COALESCE(Temperature, Temperature_Outdoor)  AS Temperature
       FROM
         pm25
       WHERE

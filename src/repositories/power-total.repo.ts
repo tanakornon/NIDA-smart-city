@@ -1,4 +1,3 @@
-import { PowerTotalData } from '../types/sensor.type';
 import mysql, { MySqlRow } from '../databases/mysql';
 import redis from '../databases/redis';
 import { post } from '../databases/mongo';
